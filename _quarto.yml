@@ -17,5 +17,7 @@ book:
 format:
   html:
     lang: es
-    theme: cosmo
+    theme: 
+      - cosmo
+      - geonotas.scss
     code-link: true
