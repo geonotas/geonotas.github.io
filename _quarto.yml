@@ -14,6 +14,8 @@ book:
   chapters:
     - index.qmd
 
+    - part: informacion-datos.qmd
+
 format:
   html:
     lang: es
