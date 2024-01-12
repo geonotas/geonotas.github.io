@@ -1,2 +1,2 @@
 # Introducción {.unnumbered}
-Este libro presenta ejemplos de procesamiento de datos geoespaciales  mediante lenguajes de programación y bibliotecas de software.
+Este sitio presenta ejemplos de procesamiento de datos geoespaciales mediante lenguajes de programación y bibliotecas de software.

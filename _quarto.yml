@@ -6,8 +6,8 @@ book:
   title: GeoNotas
   subtitle: Ejemplos de procesamiento de datos espaciales
   reader-mode: true
-  cover-image: cover.png
-  favicon: cover.png
+  cover-image: logo-geonotas.png
+  favicon: logo-geonotas.png
   site-url: https://geonotas.github.io
   repo-url: https://github.com/geonotas/geonotas.github.io
 
