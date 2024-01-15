@@ -1,0 +1,146 @@
+# GDAL {#sec-informacion-datos}
+[GDAL](https://gdal.org/) es una biblioteca para traducción de formatos geoespaciales vectoriales y raster. También contiene otras funciones de procesamiento de datos geoespaciales. Implementa un único modelo abstracto de datos vectoriales y un único modelo abstracto de datos raster, lo que permite que las aplicaciones accedan de la misma manera todos los formatos vectoriales y todos los formatos raster. GDAL puede utilizarse mediante lenguajes de programación (ej. Python, R, Java) y también mediante un conjunto de programas que se ejecutan desde la línea de comandos de los sistemas operativos. Estos últimos son lo que se ejemplifican en esta sección.
+
+## Datos vectoriales
+Las funciones para datos vectoriales están contenidas en un módulo de GDAL llamado OGR. Algunos de los programas que ofrece para la línea de comandos son:
+
+[ogrinfo](https://gdal.org/programs/ogrinfo.html#ogrinfo): despliega información sobre una fuente de datos soportada por OGR.
+
+### Información sobre un archivo local no comprimido
+```bash
+# Información sobre un archivo vectorial local no comprimido
+ogrinfo -ro -al -so \
+  datos/natural-earth/ne_10m_admin_0_countries.shp
+```
+
+<details>
+<summary>Salida</summary>
+
+<pre><code>
+INFO: Open of `datos/natural-earth/ne_10m_admin_0_countries.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+
+</details>
+
+### Información sobre un archivo local comprimido en formato ZIP
+Debe usarse el prefijo [/vsizip/](https://gdal.org/user/virtual_file_systems.html#vsizip-zip-archives) antes del nombre del archivo.
+
+```bash
+# Información sobre un archivo vectorial local comprimido en formato ZIP
+ogrinfo -ro -al -so \
+  /vsizip/datos/natural-earth/ne_10m_admin_0_countries.zip
+```
+
+<details>
+<summary>Salida</summary>
+
+<pre><code>
+INFO: Open of `/vsizip/datos/natural-earth/ne_10m_admin_0_countries.zip'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+
+</details>
+
+### Información sobre un archivo remoto comprimido en formato ZIP
+Deben usarse los prefijos [/vsizip/](https://gdal.org/user/virtual_file_systems.html#vsizip-zip-archives) y [/vsicurl/](https://gdal.org/user/virtual_file_systems.html#vsicurl-http-https-ftp-files-random-access) antes del nombre del archivo.
+
+```bash
+# Información sobre un archivo vectorial remoto comprimido en formato ZIP
+ogrinfo -ro -al -so \
+  /vsizip/vsicurl/https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip
+```
+
+<details>
+<summary>Salida</summary>
+
+<pre><code>
+INFO: Open of `/vsizip/vsicurl/https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+
+</details>

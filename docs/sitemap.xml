@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://geonotas.github.io/index.html</loc>
-    <lastmod>2024-01-12T03:57:47.053Z</lastmod>
+    <lastmod>2024-01-15T23:24:01.771Z</lastmod>
   </url>
   <url>
     <loc>https://geonotas.github.io/informacion-datos.html</loc>
-    <lastmod>2024-01-12T03:57:47.057Z</lastmod>
+    <lastmod>2024-01-15T23:24:01.775Z</lastmod>
+  </url>
+  <url>
+    <loc>https://geonotas.github.io/informacion-datos-gdal.html</loc>
+    <lastmod>2024-01-15T23:24:01.779Z</lastmod>
   </url>
 </urlset>

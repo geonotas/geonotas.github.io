@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GeoNotas - Información sobre datos</title>
+<title>GeoNotas - 1&nbsp; GDAL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./informacion-datos-gdal.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./informacion-datos.html" rel="prev">
 <link href="./logo-geonotas.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./informacion-datos.html">Información sobre datos</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./informacion-datos.html">Información sobre datos</a></li><li class="breadcrumb-item"><a href="./informacion-datos-gdal.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">GDAL</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -116,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./informacion-datos.html" class="sidebar-item-text sidebar-link active">
+            <a href="./informacion-datos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Información sobre datos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -125,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./informacion-datos-gdal.html" class="sidebar-item-text sidebar-link">
+  <a href="./informacion-datos-gdal.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">GDAL</span></span></a>
   </div>
 </li>
@@ -137,14 +170,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#datos-vectoriales" id="toc-datos-vectoriales" class="nav-link active" data-scroll-target="#datos-vectoriales"><span class="header-section-number">1.1</span> Datos vectoriales</a>
+  <ul class="collapse">
+  <li><a href="#información-sobre-un-archivo-local-no-comprimido" id="toc-información-sobre-un-archivo-local-no-comprimido" class="nav-link" data-scroll-target="#información-sobre-un-archivo-local-no-comprimido"><span class="header-section-number">1.1.1</span> Información sobre un archivo local no comprimido</a></li>
+  <li><a href="#información-sobre-un-archivo-local-comprimido-en-formato-zip" id="toc-información-sobre-un-archivo-local-comprimido-en-formato-zip" class="nav-link" data-scroll-target="#información-sobre-un-archivo-local-comprimido-en-formato-zip"><span class="header-section-number">1.1.2</span> Información sobre un archivo local comprimido en formato ZIP</a></li>
+  <li><a href="#información-sobre-un-archivo-remoto-comprimido-en-formato-zip" id="toc-información-sobre-un-archivo-remoto-comprimido-en-formato-zip" class="nav-link" data-scroll-target="#información-sobre-un-archivo-remoto-comprimido-en-formato-zip"><span class="header-section-number">1.1.3</span> Información sobre un archivo remoto comprimido en formato ZIP</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-informacion-datos" class="quarto-section-identifier">Información sobre datos</span></h1>
+<h1 class="title"><span id="sec-informacion-datos" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">GDAL</span></span></h1>
 </div>
 
 
@@ -159,9 +203,145 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>En esta sección …</p>
+<p><a href="https://gdal.org/">GDAL</a> es una biblioteca para traducción de formatos geoespaciales vectoriales y raster. También contiene otras funciones de procesamiento de datos geoespaciales. Implementa un único modelo abstracto de datos vectoriales y un único modelo abstracto de datos raster, lo que permite que las aplicaciones accedan de la misma manera todos los formatos vectoriales y todos los formatos raster. GDAL puede utilizarse mediante lenguajes de programación (ej. Python, R, Java) y también mediante un conjunto de programas que se ejecutan desde la línea de comandos de los sistemas operativos. Estos últimos son lo que se ejemplifican en esta sección.</p>
+<section id="datos-vectoriales" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="datos-vectoriales"><span class="header-section-number">1.1</span> Datos vectoriales</h2>
+<p>Las funciones para datos vectoriales están contenidas en un módulo de GDAL llamado OGR. Algunos de los programas que ofrece para la línea de comandos son:</p>
+<p><a href="https://gdal.org/programs/ogrinfo.html#ogrinfo">ogrinfo</a>: despliega información sobre una fuente de datos soportada por OGR.</p>
+<section id="información-sobre-un-archivo-local-no-comprimido" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="información-sobre-un-archivo-local-no-comprimido"><span class="header-section-number">1.1.1</span> Información sobre un archivo local no comprimido</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Información sobre un archivo vectorial local no comprimido</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ogrinfo</span> <span class="at">-ro</span> <span class="at">-al</span> <span class="at">-so</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  datos/natural-earth/ne_10m_admin_0_countries.shp</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+Salida
+</summary>
+<pre><code>
+INFO: Open of `datos/natural-earth/ne_10m_admin_0_countries.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+</details>
+</section>
+<section id="información-sobre-un-archivo-local-comprimido-en-formato-zip" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="información-sobre-un-archivo-local-comprimido-en-formato-zip"><span class="header-section-number">1.1.2</span> Información sobre un archivo local comprimido en formato ZIP</h3>
+<p>Debe usarse el prefijo <a href="https://gdal.org/user/virtual_file_systems.html#vsizip-zip-archives">/vsizip/</a> antes del nombre del archivo.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Información sobre un archivo vectorial local comprimido en formato ZIP</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ogrinfo</span> <span class="at">-ro</span> <span class="at">-al</span> <span class="at">-so</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  /vsizip/datos/natural-earth/ne_10m_admin_0_countries.zip</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+Salida
+</summary>
+<pre><code>
+INFO: Open of `/vsizip/datos/natural-earth/ne_10m_admin_0_countries.zip'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+</details>
+</section>
+<section id="información-sobre-un-archivo-remoto-comprimido-en-formato-zip" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="información-sobre-un-archivo-remoto-comprimido-en-formato-zip"><span class="header-section-number">1.1.3</span> Información sobre un archivo remoto comprimido en formato ZIP</h3>
+<p>Deben usarse los prefijos <a href="https://gdal.org/user/virtual_file_systems.html#vsizip-zip-archives">/vsizip/</a> y <a href="https://gdal.org/user/virtual_file_systems.html#vsicurl-http-https-ftp-files-random-access">/vsicurl/</a> antes del nombre del archivo.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Información sobre un archivo vectorial remoto comprimido en formato ZIP</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ogrinfo</span> <span class="at">-ro</span> <span class="at">-al</span> <span class="at">-so</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  /vsizip/vsicurl/https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+Salida
+</summary>
+<pre><code>
+INFO: Open of `/vsizip/vsicurl/https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: ne_10m_admin_0_countries
+Metadata:
+  DBF_DATE_LAST_UPDATE=2022-05-08
+Geometry: Polygon
+Feature Count: 258
+Extent: (-180.000000, -90.000000) - (180.000000, 83.634101)
+Layer SRS WKT:
+GEOGCRS["WGS 84",
+    DATUM["World Geodetic System 1984",
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["latitude",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["longitude",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    ID["EPSG",4326]]
+Data axis to CRS axis mapping: 2,1
+featurecla: String (15.0)
+scalerank: Integer (1.0)
+LABELRANK: Integer (2.0)
+SOVEREIGNT: String (32.0)
+...
+</code></pre>
+</details>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -399,14 +579,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introducción</span>
+      <a href="./informacion-datos.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Información sobre datos</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./informacion-datos-gdal.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">GDAL</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
